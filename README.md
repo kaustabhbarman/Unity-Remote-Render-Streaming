@@ -1,6 +1,6 @@
-#Installation Guide
+# Installation Guide
 
-##Requirements
+## Requirements
 
 Make sure, all of the following requirements are met:
 - Unity 2019.4 or higher installed
