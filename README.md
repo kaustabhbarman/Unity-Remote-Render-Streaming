@@ -6,7 +6,7 @@ Make sure, all of the following requirements are met:
 - Unity 2019.4 or higher installed
 - nodejs 14.16.1 or higher installed
 
-##Setting Up in Unity
+## Setting Up in Unity
 
 Clone the repository to the desired location on your machine.
 A folder named _awt-unity_ should be created.
@@ -22,7 +22,7 @@ Inside the Unity editor open the _Project View_.
 
 Navigate to _Assets_ -> _Scenes_ and open the _Prototype_ scene.
 
-##Setting Up the Web Server
+## Setting Up the Web Server
 
 Navigate to the _WebApp_ folder inside the _awt-unity_ folder. Open the _package.json_ file.
 Change the start script (_scripts_ -> _start_) to
@@ -35,7 +35,7 @@ Open a terminal or console window inside the _WebApp_ folder. Run the following 
 
 `npm run build`
 
-##Starting the Web Server and the Application
+## Starting the Web Server and the Application
 
 Start the web server by executing the following command inside the _WebApp_ folder:
 
@@ -51,7 +51,7 @@ Click the play button of the video player on the next site.
 
 You can now control the capsule with WASD in the browser.
 
-##Trouble Shooting
+## Trouble Shooting
 
 Make sure the web server and the application are **NOT** running.
 
