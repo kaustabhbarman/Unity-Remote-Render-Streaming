@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Unity.RenderStreaming;
 
 namespace Unity.RenderStreaming
 {
@@ -12,6 +9,8 @@ public class Mover : MonoBehaviour
     private float _moveSpeed = 5f;
 
     [SerializeField] private InputChannelReceiverBase receiver;
+
+    [SerializeField] private UserInterfaceController userInterfaceController;
 
     private Keyboard remote_keyboard;
 
@@ -44,7 +43,6 @@ public class Mover : MonoBehaviour
 
     void OnDeviceChange(InputDevice device, InputDeviceChange change)
         {
-            Debug.Log("OnDeviceChange");
             switch (change)
             {
                 case InputDeviceChange.Added:
@@ -58,6 +56,8 @@ public class Mover : MonoBehaviour
 
         void SetDevice(InputDevice device, bool add=true)
         {
+            userInterfaceController?.SetDevice(device, add);
+            
             switch (device){
                 case Keyboard keyboard:
                         remote_keyboard = add ? keyboard : null;
