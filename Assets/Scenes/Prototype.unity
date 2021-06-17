@@ -316,7 +316,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayText: {fileID: 613957471}
-  receiver: {fileID: 963194230}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -540,6 +539,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveSpeed: 5
   receiver: {fileID: 920114304}
+  userInterfaceController: {fileID: 613957473}
 --- !u!114 &920114306
 MonoBehaviour:
   m_ObjectHideFlags: 0
