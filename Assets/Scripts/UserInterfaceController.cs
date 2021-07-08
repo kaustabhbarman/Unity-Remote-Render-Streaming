@@ -17,11 +17,7 @@ public class UserInterfaceController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (keyboard == null)
-        {
-            keyboard = remoteInputController.GetCurrentKeyboard();
-        }
-
+        Keyboard keyboard = remoteInputController.GetCurrentKeyboard();
         if(keyboard != null)
         {
             keyboard.onTextInput += OnTextInput;
@@ -29,13 +25,11 @@ public class UserInterfaceController : MonoBehaviour
 
         string timeText     = System.DateTime.Now.ToString() + "\n";
         string keyText      = lastKey.ToString();
-        //Debug.Log("LAST KEY: " + lastKey.ToString());
         displayText.text    = timeText + keyText;
     }
 
     void OnTextInput(char c)
     {
-        //Debug.Log("ONTEXTINPUT CHAR: " + c);
         lastKey = c;
     }
 

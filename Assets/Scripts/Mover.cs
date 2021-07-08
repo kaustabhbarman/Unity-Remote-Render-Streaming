@@ -7,20 +7,32 @@ public class Mover : MonoBehaviour
 {
     [SerializeField]
     private RemoteInputController remoteInputController;
-        [SerializeField]
-    private float _moveSpeed = 5f;
+    [SerializeField]
+    private float moveSpeed = 5.0f;
+    [SerializeField]
+    private float rotationSpeed = 360f;
 
-    [SerializeField] private UserInterfaceController userInterfaceController;
+    private Animator animator;
+    private Vector3 direction = Vector3.zero;
+
+    private void Awake() 
+    {
+        animator = GetComponent<Animator>();    
+    }
 
     void Update() 
     {
-        Keyboard keyboard = remoteInputController.GetCurrentKeyboard();
-        //Debug.Log("MOVER KEYBOARD: " + keyboard);
-        
-        Vector3 direction = Vector3.zero;
-        
-        //Debug.Log("MOVER DEVICE: " + keyboard);
+        direction = Vector3.zero;
+        HandleKeyboardInput();
+        HandleTouchInput();
+        HandleMovement();
+        UpdateAnimator();
+    }
 
+    private void HandleKeyboardInput()
+    {
+        Keyboard keyboard = remoteInputController.GetCurrentKeyboard();
+        
         if (keyboard != null)
         {
             if (keyboard.dKey.isPressed)
@@ -32,9 +44,11 @@ public class Mover : MonoBehaviour
             if (keyboard.wKey.isPressed)
                 direction += Vector3.forward;
         }
+    }
 
+    private void HandleTouchInput()
+    {
         Touchscreen touchscreen = remoteInputController.GetCurrentTouchScreen();
-        //Debug.Log("MOVER TOUCHSCREEN: " + touchscreen);
 
         if (touchscreen != null)
         {
@@ -65,9 +79,28 @@ public class Mover : MonoBehaviour
                     direction = Vector3.right;
                 }
             }
-
         }
+    }
 
-        transform.position += Time.deltaTime * _moveSpeed * direction.normalized;
+    private void HandleMovement()
+    {
+        if (direction != Vector3.zero)
+        {
+            Quaternion destinationRotation = Quaternion.LookRotation(direction, Vector3.up);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, destinationRotation, rotationSpeed * Time.deltaTime);
+            transform.position += Time.deltaTime * moveSpeed * direction.normalized;
+        }
+    }
+
+    private void UpdateAnimator()
+    {
+        if (direction != Vector3.zero)
+        {
+            animator.SetFloat("speed", 0.5f, 0.1f, Time.deltaTime);
+        }
+        else
+        {
+            animator.SetFloat("speed", 0f, 0.1f, Time.deltaTime);
+        }
     }
 }
