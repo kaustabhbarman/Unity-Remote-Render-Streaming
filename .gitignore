@@ -77,3 +77,6 @@ crashlytics-build.properties
 /WebApp/node_modules
 /WebApp/.editorconfig
 /WebApp/run.bat
+
+#Samples
+Assets/Samples/*

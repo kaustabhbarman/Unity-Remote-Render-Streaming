@@ -316,6 +316,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayText: {fileID: 613957471}
+  remoteInputController: {fileID: 2024833490}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,7 +423,6 @@ GameObject:
   - component: {fileID: 920114301}
   - component: {fileID: 920114300}
   - component: {fileID: 920114305}
-  - component: {fileID: 920114304}
   - component: {fileID: 920114306}
   m_Layer: 0
   m_Name: Player
@@ -510,21 +510,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &920114304
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 920114299}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bf104a15f68aae49b67b198ea88131e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  local: 0
-  label: data
-  arrayButtonClickEvent: []
 --- !u!114 &920114305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -537,8 +522,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 272a1c6f69df50e46ad42c21a720fa5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  remoteInputController: {fileID: 2024833490}
   _moveSpeed: 5
-  receiver: {fileID: 920114304}
   userInterfaceController: {fileID: 613957473}
 --- !u!114 &920114306
 MonoBehaviour:
@@ -564,7 +549,6 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194229}
-  - component: {fileID: 963194230}
   m_Layer: 0
   m_Name: PlayerCamera
   m_TagString: Untagged
@@ -644,69 +628,6 @@ MonoBehaviour:
   streamingSize: {x: 1280, y: 720}
   depth: 0
   antiAliasing: 1
---- !u!114 &963194230
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bf104a15f68aae49b67b198ea88131e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  local: 0
-  label: 
-  arrayButtonClickEvent:
-  - elementId: 1
-    click:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 705507993}
-          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_MethodName: SetActive
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
-  - elementId: 2
-    click:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 705507993}
-          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_MethodName: SetActive
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - elementId: 3
-    click:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 705507993}
-          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_MethodName: SetActive
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
 --- !u!1 &1289680651
 GameObject:
   m_ObjectHideFlags: 0
@@ -904,7 +825,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   streams:
   - {fileID: 963194229}
-  - {fileID: 920114304}
+  - {fileID: 2024833489}
 --- !u!114 &1437659867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1017,4 +938,65 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2024833488
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2024833491}
+  - component: {fileID: 2024833490}
+  - component: {fileID: 2024833489}
+  m_Layer: 0
+  m_Name: RemoteInput
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2024833489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2024833488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bf104a15f68aae49b67b198ea88131e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  local: 0
+  label: 
+  arrayButtonClickEvent: []
+--- !u!114 &2024833490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2024833488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3729b1a836d23dc43854f86534013d0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  receiver: {fileID: 2024833489}
+  enhancedTouchSupport: 1
+--- !u!4 &2024833491
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2024833488}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.028037786, y: 0.8947544, z: 0.013088539}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
