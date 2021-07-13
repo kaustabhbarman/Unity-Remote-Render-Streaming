@@ -20,9 +20,9 @@ public class PlayerCameraFollow : MonoBehaviour
     {
         transform.position = player.position + positionOffset;
 
-        Quaternion curRotation = transform.rotation;
-        curRotation.eulerAngles = rotationOffset;
-        transform.rotation = curRotation;
+        //Quaternion curRotation = transform.rotation;
+        //curRotation.eulerAngles = rotationOffset;
+        //transform.rotation = curRotation;
 
         //cameraActivator.renderCamera();
     }

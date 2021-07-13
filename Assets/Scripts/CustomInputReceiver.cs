@@ -7,6 +7,10 @@ using Unity.RenderStreaming;
 [Serializable]
 public class CustomInputReceiver : InputChannelReceiverBase
 {
+    //TESTING START
+    [SerializeField]
+    private Camera playerCamera;
+    //TESTING END
     [SerializeField, Tooltip("Array to set your own click event")]
     private ButtonClickElement[] arrayButtonClickEvent;
 
@@ -75,6 +79,20 @@ public class CustomInputReceiver : InputChannelReceiverBase
     public virtual void OnDestroy()
     {
         remoteInput?.Dispose();
+    }
+
+/*
+    TODO: REMOVE
+*/
+    private void Update() 
+    {
+        if (playerCamera != null)
+        {
+            Debug.Log("CHANGING ROTATION");
+            Debug.Log("BEFORE: " + playerCamera.transform.rotation);
+            playerCamera.transform.rotation = remoteInput.GetCamRotation();
+            Debug.Log("AFTER: " + playerCamera.transform.rotation);   
+        }
     }
 }
 
