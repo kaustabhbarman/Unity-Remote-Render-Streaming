@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using EnhancedTouch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 using System.Linq;
+using Gyroscope = UnityEngine.InputSystem.Gyroscope;
 
 public class Mover : MonoBehaviour
 {
@@ -32,7 +33,8 @@ public class Mover : MonoBehaviour
     private void HandleKeyboardInput()
     {
         Keyboard keyboard = remoteInputController.GetCurrentKeyboard();
-        
+        Gyroscope gyro = remoteInputController.GetCurrentGyroscope();
+
         if (keyboard != null)
         {
             if (keyboard.dKey.isPressed)
@@ -43,6 +45,11 @@ public class Mover : MonoBehaviour
                 direction += Vector3.left;
             if (keyboard.wKey.isPressed)
                 direction += Vector3.forward;
+        }
+
+        if(gyro != null)
+        {
+            Debug.Log(gyro);
         }
     }
 

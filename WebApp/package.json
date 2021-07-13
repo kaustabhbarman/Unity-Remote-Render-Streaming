@@ -33,7 +33,7 @@
     "pkg": "^4.4.0",
     "ts-jest": "^24.0.2",
     "ts-node": "^8.1.0",
-    "typescript": "^3.3.4000"
+    "typescript": "^3.9.10"
   },
   "bin": {
     "webserver": "build/index.js"

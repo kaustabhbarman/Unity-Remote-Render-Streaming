@@ -12,7 +12,7 @@ public class CustomInputReceiver : InputChannelReceiverBase
 
     public override event Action<InputDevice, InputDeviceChange> onDeviceChange;
 
-    private RemoteInput remoteInput;
+    private CustomRemoteInput remoteInput;
 
     private string mainConnectionID = String.Empty;
 
@@ -29,6 +29,7 @@ public class CustomInputReceiver : InputChannelReceiverBase
                 onDeviceChange.Invoke(remoteInput.RemoteKeyboard, InputDeviceChange.Removed);
                 onDeviceChange.Invoke(remoteInput.RemoteMouse, InputDeviceChange.Removed);
                 onDeviceChange.Invoke(remoteInput.RemoteTouchscreen, InputDeviceChange.Removed);
+                onDeviceChange.Invoke(remoteInput.RemoteGyroscope, InputDeviceChange.Removed);
                 remoteInput.Dispose();
                 remoteInput = null;
                 mainConnectionID = String.Empty;
@@ -54,6 +55,7 @@ public class CustomInputReceiver : InputChannelReceiverBase
                 onDeviceChange.Invoke(remoteInput.RemoteKeyboard, InputDeviceChange.Added);
                 onDeviceChange.Invoke(remoteInput.RemoteMouse, InputDeviceChange.Added);
                 onDeviceChange.Invoke(remoteInput.RemoteTouchscreen, InputDeviceChange.Added);
+                onDeviceChange.Invoke(remoteInput.RemoteGyroscope, InputDeviceChange.Added);
             }
         }
         base.SetChannel(connectionId, channel);

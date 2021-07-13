@@ -7,7 +7,8 @@ const InputEvent = {
   MouseWheel: 2,
   Touch: 3,
   ButtonClick: 4,
-  Gamepad: 5
+  Gamepad: 5,
+  Gyroscope: 6
 };
 
 const KeyboardEventType = {
@@ -379,6 +380,23 @@ export function registerMouseEvents(videoPlayer, playerElement) {
     data.setUint8(0, InputEvent.MouseWheel);
     data.setFloat32(1, e.deltaX, true);
     data.setFloat32(5, e.deltaY, true);
+    _videoPlayer && _videoPlayer.sendMsg(data.buffer);
+  }
+
+  window.addEventListener('deviceorientation', handleOrientation);
+
+  function handleOrientation(e) {
+    const alpha = e.alpha;
+    const beta = e.beta;
+    const gamma = e.gamma;
+    console.log("Device orientation: alpha:" + alpha + " , beta: " + beta + " , gamma: " + gamma)
+    Logger.log("Device orientation: alpha:" + alpha + " , beta: " + beta + " , gamma: " + gamma);
+     let data = new DataView(new ArrayBuffer(25));
+     data.setUint8(0, InputEvent.Gyroscope);
+     data.setFloat64(1, alpha, true);
+     data.setFloat64(9, beta, true);
+     data.setFloat64(17, gamma, true);
+    console.log(data)
     _videoPlayer && _videoPlayer.sendMsg(data.buffer);
   }
 

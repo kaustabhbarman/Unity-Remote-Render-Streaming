@@ -2,6 +2,7 @@ using UnityEngine;
 using Unity.RenderStreaming;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.EnhancedTouch;
+using Gyroscope = UnityEngine.InputSystem.Gyroscope;
 
 public class RemoteInputController : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class RemoteInputController : MonoBehaviour
 
     private Touchscreen remote_touchscreen;
 
+    private Gyroscope remote_gyroscope;
 
     void Awake() 
     {
@@ -46,11 +48,14 @@ public class RemoteInputController : MonoBehaviour
     void SetDevice(InputDevice device, bool add=true)
     {
         switch (device){
-            case Keyboard keyboard:
-                    remote_keyboard = add ? keyboard : null;
-                return;
-            case Touchscreen screen:
-                    remote_touchscreen = add ? screen : null;
+            //case Keyboard keyboard:
+            //        remote_keyboard = add ? keyboard : null;
+            //    return;
+            //case Touchscreen screen:
+            //        remote_touchscreen = add ? screen : null;
+            //    return;
+            case Gyroscope gyro:
+                    remote_gyroscope = add ? gyro : null;
                 return;
         }
     }
@@ -70,4 +75,10 @@ public class RemoteInputController : MonoBehaviour
     {
         return remote_touchscreen;
     }
+
+    public Gyroscope GetCurrentGyroscope()
+    {
+        return remote_gyroscope;
+    }
 }
+
