@@ -1,42 +1,57 @@
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="css/main.css" />
-  <title>Unity Render Streaming Samples</title>
-</head>
-
-<body>
-  <div id="container">
-    <h1>Unity Render Streaming Samples</h1>
-
-    <section>
-      <p>These are WebClient samples for use with <a href="https://docs.unity3d.com/Packages/com.unity.renderstreaming@latest/index.html">Unity Render
-          Streaming</a>.</p>
-    </section>
-
-    <section>
-      <div id="startup"></div>
-    </section>
-
-    <section>
-      <h2 id="videoplayer"><a href="videoplayer/index.html">VideoPlayer Sample</a></h2>
-      <p>This is a sample to receive the camera image rendered on Unity. You can operate the camera in Unity from the
-        browser.</p>
-      <p>It can be used in combination with the <code>WebBrowserInput</code> scene of Unity Render Streaming.</p>
-      <p>The WebApp must be running in Public mode.</p>
-    </section>
-
-    <section>
-      <h2 id="bidirectional"><a href="bidirectional/index.html">Bidirectional Sample</a></h2>
-      <p>This is a sample for sending and receiving video in both directions.</p>
-      <p>It can be used in combination with the <code>Bidirectional</code> scene of Unity Render Streaming.</p>
-      <p>The WebApp must be running in Private mode.</p>
-    </section>
-
-    <section>
-      <a href="https://github.com/Unity-Technologies/UnityRenderStreaming/tree/develop/WebApp" title="View source for this page on GitHub" id="viewSource">View source on GitHub</a>
-    </section>
-  </div>
-
-  <script type="module" src="js/main.js"></script>
-</body>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <!-- Favicon-->
+        <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link rel="stylesheet" href="css/main.css" />
+        <link href="css/styles.css" rel="stylesheet" />
+        <title>PJ-AWT</title>
+    </head>
+    <body>
+        <!-- Responsive navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#">Advaced Web Technologies - Project</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="videoplayer/index.html">Video Player</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Developers</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Page content-->
+        <div class="container">
+            <div class="text-center mt-5">
+                <h1>Unity Remote Rendering</h1>
+                <p class="lead">This is a web client sample to be used with <a href="https://git.tu-berlin.de/alex94/awt-unity/-/tree/showcase">Unity Remote Rendering</a>.</p>
+                <div class="card">
+                    <div class="card-body" id="startup">
+                    </div>
+                </div>
+            </br>
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">Video Player</h3>
+                        <p class="card-text">This is a sample to receive the camera image rendered on Unity. The player can be operated from the browser.
+                        It can be used in combination with the <code>Prototype</code> scene of AWT Unity.
+                        The WebApp must be running in Public mode.</p>
+                        <a href="videoplayer/index.html" class="btn btn-success">Open Video Player</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+        <script type="module" src="js/main.js"></script>
+    </body>
+</html>

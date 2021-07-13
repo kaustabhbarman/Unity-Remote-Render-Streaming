@@ -1,7 +1,7 @@
 import * as Config from "./config.js";
 
 const startupDiv = document.getElementById("startup");
-startupDiv.innerHTML = "<h3>Server Configuration</h3>";
+startupDiv.innerHTML = '<h3 class="card-title">Server Configuration</h3>';
 
 const displayConfig = async () => {
   const res = await Config.getServerConfig();
