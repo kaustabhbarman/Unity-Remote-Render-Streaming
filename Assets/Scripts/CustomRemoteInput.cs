@@ -127,10 +127,9 @@ public class CustomRemoteInput : IInput, IDisposable
     public Touchscreen RemoteTouchscreen { get; }
     public Gamepad RemoteGamepad { get; }
     public Gyroscope RemoteGyroscope { get; }
-
-/*
-    TODO: REMOVE
-*/
+    /*
+        TODO: REMOVE
+    */
     public Quaternion camRotation;
 
     public Action<int> ActionButtonClick;
@@ -265,7 +264,7 @@ public class CustomRemoteInput : IInput, IDisposable
                 var gamma = BitConverter.ToDouble(bytes, 17);
 
                 float correctedAlpha = (float)alpha;
-                float correctedBeta = (float) - beta;
+                float correctedBeta = (float) - beta + 90;
                 float correctedGamma = - (float)gamma;
 
                 correctedAlpha = 0;

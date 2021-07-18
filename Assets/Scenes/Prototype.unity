@@ -4047,8 +4047,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 045786cf504bd7347842d6948241cbd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  urlSignaling: ws://localhost:8080
-  signalingType: Unity.RenderStreaming.Signaling.WebSocketSignaling
+  urlSignaling: https://localhost:8080
+  signalingType: Unity.RenderStreaming.Signaling.HttpSignaling
   iceServers:
   - credential: 
     credentialType: 0
