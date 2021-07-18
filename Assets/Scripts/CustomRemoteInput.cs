@@ -265,7 +265,7 @@ public class CustomRemoteInput : IInput, IDisposable
                 var gamma = BitConverter.ToDouble(bytes, 17);
 
                 float correctedAlpha = (float)alpha;
-                float correctedBeta = (float)beta - 90;
+                float correctedBeta = (float) - beta;
                 float correctedGamma = - (float)gamma;
 
                 correctedAlpha = 0;

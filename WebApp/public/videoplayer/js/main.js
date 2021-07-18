@@ -1,5 +1,5 @@
 import { VideoPlayer } from "./video-player.js";
-import { registerGamepadEvents, registerKeyboardEvents, registerMouseEvents, sendClickEvent } from "../../js/register-events.js";
+import { registerGamepadEvents, registerGyroEvents, registerKeyboardEvents, registerMouseEvents, sendClickEvent } from "../../js/register-events.js";
 import { getServerConfig } from "../../js/config.js";
 
 setup();
@@ -131,6 +131,7 @@ async function setupVideoPlayer(elements) {
   registerGamepadEvents(videoPlayer);
   registerKeyboardEvents(videoPlayer);
   registerMouseEvents(videoPlayer, elements);
+  registerGyroEvents(videoPlayer);
 
   return videoPlayer;
 }

@@ -88,10 +88,7 @@ public class CustomInputReceiver : InputChannelReceiverBase
     {
         if (playerCamera != null)
         {
-            Debug.Log("CHANGING ROTATION");
-            Debug.Log("BEFORE: " + playerCamera.transform.rotation);
             playerCamera.transform.rotation = remoteInput.GetCamRotation();
-            Debug.Log("AFTER: " + playerCamera.transform.rotation);   
         }
     }
 }

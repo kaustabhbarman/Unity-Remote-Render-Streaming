@@ -7,7 +7,7 @@
     "build": "tsc -p tsconfig.json",
     "test": "jest --env=node --colors --coverage test",
     "newman": "newman run test/renderstreaming.postman_collection.json",
-    "start": "node ./build/index.js -w -p 8080",
+    "start": "node ./build/index.js -s -p 8080 -k client-1.local.key  -c client-1.local.crt",
     "dev": "ts-node ./src/index.ts",
     "lint": "eslint src/**/*.ts test/**/*.ts",
     "pack": "pkg ."

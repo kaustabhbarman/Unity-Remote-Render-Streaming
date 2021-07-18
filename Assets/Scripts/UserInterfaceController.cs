@@ -23,7 +23,7 @@ public class UserInterfaceController : MonoBehaviour
             keyboard.onTextInput += OnTextInput;
         }
 
-        string timeText     = System.DateTime.Now.ToString() + "\n";
+        string timeText     = System.DateTime.Now.ToString() + ":" + System.DateTime.Now.Millisecond.ToString() + "\n";
         string keyText      = lastKey.ToString();
         displayText.text    = timeText + keyText;
     }
