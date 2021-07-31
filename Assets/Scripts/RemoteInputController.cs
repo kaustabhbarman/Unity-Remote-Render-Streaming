@@ -11,10 +11,10 @@ public class RemoteInputController : MonoBehaviour
     [SerializeField] private bool enhancedTouchSupport;
 
     private Keyboard remote_keyboard;
-
     private Touchscreen remote_touchscreen;
-
     private Gyroscope remote_gyroscope;
+    private Mouse remote_mouse;
+    private Gamepad remote_gamepad;
 
     void Awake() 
     {
@@ -57,6 +57,12 @@ public class RemoteInputController : MonoBehaviour
             case Gyroscope gyro:
                     remote_gyroscope = add ? gyro : null;
                 return;
+            case Mouse mouse:
+                    remote_mouse = add ? mouse : null;
+                return;
+            case Gamepad gamepad:
+                    remote_gamepad = add ? gamepad : null;
+                return;
         }
     }
 
@@ -82,6 +88,16 @@ public class RemoteInputController : MonoBehaviour
     public Gyroscope GetCurrentGyroscope()
     {
         return remote_gyroscope;
+    }
+
+    public Mouse GetCurrentMouse()
+    {
+        return remote_mouse;
+    }
+
+    public Gamepad GetCurrentGamepad()
+    {
+        return remote_gamepad;
     }
 }
 
