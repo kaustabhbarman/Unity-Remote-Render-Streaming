@@ -51,7 +51,8 @@ public class CustomCameraControler : MonoBehaviour
             t.position = new Vector3(x, y, z);
         }
     }
-
+    
+    #region Controlls
     [Header("Movement Settings")]
     [Tooltip("Movement Sensitivity Factor."), Range(0.001f, 1f)]
     [SerializeField] float m_movementSensitivityFactor = 0.1f;
@@ -77,9 +78,15 @@ public class CustomCameraControler : MonoBehaviour
     [SerializeField]
     private bool invertY = false;
 
-    [Tooltip("Instance for controlling UI that renders to the camera.")]
+    //[Tooltip("Instance for controlling UI that renders to the camera.")]
+    //[SerializeField]
+    //private UIController uiController = null;
+    #endregion
     [SerializeField]
-    private UIController uiController = null;
+    private Transform player;
+
+    [SerializeField]
+    private Vector3 positionOffset = new Vector3(0, 5, -8);
 
     [SerializeField]
     private RemoteInputController remoteInputController;
@@ -88,7 +95,6 @@ public class CustomCameraControler : MonoBehaviour
     readonly CameraState m_InterpolatingCameraState = new CameraState();
 
     private Mouse mouse;
-    private Gamepad gamepad;
 
     //---------------------------------------------------------------------------------------------------------------------
     Vector3 GetTranslationFromInput(Vector2 input)
@@ -131,24 +137,29 @@ public class CustomCameraControler : MonoBehaviour
         }
         return direction;
     }
+    void OnEnable()
+    {
+        m_TargetCameraState.SetFromTransform(transform);
+        m_InterpolatingCameraState.SetFromTransform(transform);
+    }
 
     void LateUpdate()
     {
         mouse = remoteInputController.GetCurrentMouse();
-        gamepad = remoteInputController.GetCurrentGamepad();
-
+        Gamepad gamepad = remoteInputController.GetCurrentGamepad();
+        
         // Rotation
-
         if (IsMouseDragged(mouse, false))
         {
             UpdateTargetCameraStateFromInput(mouse.delta.ReadValue());
         }
-
         // Rotation from joystick
-        if (gamepad.rightStick != null)
+        if (gamepad?.rightStick != null)
+        {
             UpdateTargetCameraStateFromInput(gamepad.rightStick.ReadValue());
-
+        }
         // Translation
+        
         var translation = GetInputTranslationDirection() * Time.deltaTime;
 
         translation *= Mathf.Pow(2.0f, boost);
@@ -162,6 +173,7 @@ public class CustomCameraControler : MonoBehaviour
         m_InterpolatingCameraState.LerpTowards(m_TargetCameraState, positionLerpPct, rotationLerpPct);
 
         m_InterpolatingCameraState.UpdateTransform(transform);
+        transform.position = player.position + positionOffset;
     }
 
     //---------------------------------------------------------------------------------------------------------------------
