@@ -7,6 +7,29 @@
   <link rel="stylesheet" href="../css/main.css" />
   <link rel="stylesheet" href="css/style.css" />
   <link href="../css/styles.css" rel="stylesheet" />
+  <style>
+    @font-face {
+      font-family: 'DIGITAL';
+      src: url('https://cssdeck.com/uploads/resources/fonts/digii/DS-DIGII.TTF');
+    }
+
+    .digital-clock {
+      margin: auto;
+      position: absolute;
+      /* top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0; */
+      width: 265px;
+      height: 60px;
+      color: #000000;
+      border: 2px solid #999;
+      border-radius: 4px;
+      text-align: center;
+      font: 50px/60px 'DIGITAL', Helvetica;
+      background: linear-gradient(#ffffff);
+    }
+  </style>
   <title>PJ-AWT</title>
 </head>
 
@@ -27,9 +50,31 @@
   </nav>
 
   <div id="container">
-    <h1>Unity Remote Rendering</h1>
+    <div class="row">
+      <div class="col">
+        <h1>Unity Remote Rendering</h1>
+      </div>
+      <div class="col">
+        <div class="digital-clock" id="clock">00:00:00:000</div>
+      </div>
+    </div>
+    
 
     <div id="player"></div>
+  </br>
+    <div>
+      <table class="table" id="time">
+        <thead>
+          <tr>
+            <th scope="col">Key Pressed</th>
+            <th scope="col">Timestamp</th>
+            <th scope="col">Colour</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
 
   </div>
 
@@ -38,6 +83,76 @@
   <script src="https://unpkg.com/resize-observer-polyfill@1.5.0/dist/ResizeObserver.global.js"></script>
   <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=IntersectionObserver"></script>
   <script type="module" src="js/main.js"></script>
+
+  <script type="text/javascript">
+    const vid = document.getElementById("container");
+    document.addEventListener('keypress', printKey);
+
+    clockUpdate();
+    setInterval(clockUpdate, 10);
+
+    function printKey(e) {
+      var time = getTime();
+      var ts = time[0] + ':' + time[1] + ':' + time[2] + ':' + time[3];
+
+      const table = document.getElementById("time");
+      let row = table.insertRow();
+      var color = colourKey(e.code);
+      document.getElementById('clock').style.backgroundColor = color;
+      row.insertCell(0).innerHTML = e.code;
+      row.insertCell(1).innerHTML = ts;
+      row.insertCell(2).innerHTML = "<p style='background-color:" + color + ";'>" + e.code + "</p>";
+    }
+
+    function colourKey(k) {
+      if (k == 'KeyW'){
+        return "green";
+      } else if (k == 'KeyA'){
+        return "red";
+      } else if (k == 'KeyS'){
+        return "yellow";
+      } else if (k == 'KeyD'){
+        return "blue";
+      } else {
+        return "white";
+      }
+    }
+
+    function getTime(){
+      const date = new Date();
+
+      var h = addZero(date.getHours());
+      var m = addZero(date.getMinutes());
+      var s = addZero(date.getSeconds());
+      var ms = addZero(date.getMilliseconds(), true);
+
+      return [h, m, s, ms];
+    }
+
+    function clockUpdate(){
+      let time = getTime();
+      var cl = document.getElementsByClassName('digital-clock');
+      cl[0].innerText = time[0] + ':' + time[1] + ':' + time[2] + ':' + time[3];
+    }
+
+    function addZero(x, isMs=false) {
+      if (isMs) {
+        if (x < 10) {
+          return x = '00' + x;
+        } else if (x >= 10 && x < 100){
+          return x = '0' + x;
+        } else {
+          return x;
+        }
+      } else {
+        if (x < 10) {
+          return x = '0' + x;
+        } else {
+          return x;
+        }
+      }
+    }
+  </script>
   <!-- Bootstrap core JS-->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
   <!-- Core theme JS-->
