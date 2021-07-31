@@ -86,7 +86,7 @@ public class CustomInputReceiver : InputChannelReceiverBase
 */
     private void Update() 
     {
-        if (playerCamera != null)
+        if (playerCamera != null && remoteInput != null)
         {
             playerCamera.transform.rotation = remoteInput.GetCamRotation();
         }

@@ -2574,6 +2574,7 @@ GameObject:
   - component: {fileID: 963194226}
   - component: {fileID: 963194230}
   - component: {fileID: 963194231}
+  - component: {fileID: 963194233}
   m_Layer: 0
   m_Name: PlayerCamera
   m_TagString: MainCamera
@@ -2695,6 +2696,50 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &963194233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc00c3c4c8148554885bb17e74ebcbc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_movementSensitivityFactor: 0.1
+  boost: 3.5
+  positionLerpTime: 0.2
+  mouseSensitivityCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.5
+      inSlope: 0
+      outSlope: 5
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 2.5
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  rotationLerpTime: 0.01
+  invertY: 0
+  uiController: {fileID: 0}
+  receiver: {fileID: 2024833489}
+  remoteInputController: {fileID: 2024833490}
 --- !u!1001 &971117754
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5819,7 +5864,7 @@ GameObject:
   - component: {fileID: 2024833490}
   - component: {fileID: 2024833489}
   m_Layer: 0
-  m_Name: RemoteInput
+  m_Name: RemoteInputController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
