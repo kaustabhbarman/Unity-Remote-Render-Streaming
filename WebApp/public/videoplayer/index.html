@@ -96,7 +96,7 @@
       var ts = time[0] + ':' + time[1] + ':' + time[2] + ':' + time[3];
 
       const table = document.getElementById("time");
-      let row = table.insertRow();
+      let row = table.insertRow(1);
       var color = colourKey(e.code);
       document.getElementById('clock').style.backgroundColor = color;
       row.insertCell(0).innerHTML = e.code;

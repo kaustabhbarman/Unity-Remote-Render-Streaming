@@ -26,6 +26,23 @@ public class UserInterfaceController : MonoBehaviour
         string timeText     = System.DateTime.Now.ToString() + ":" + System.DateTime.Now.Millisecond.ToString() + "\n";
         string keyText      = lastKey.ToString();
         displayText.text    = timeText + keyText;
+        switch (lastKey){
+            case 'w':
+                displayText.color = Color.green;
+                break;
+            case 'a':
+                displayText.color = Color.red;
+                break;
+            case 's':
+                displayText.color = Color.yellow;
+                break;
+            case 'd':
+                displayText.color = Color.blue;
+                break;
+            default:
+                displayText.color = Color.white;
+                break;
+        }
     }
 
     void OnTextInput(char c)
