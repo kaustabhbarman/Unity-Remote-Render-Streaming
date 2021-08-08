@@ -14,9 +14,12 @@ public class UserInterfaceController : MonoBehaviour
 
     private Keyboard keyboard;
 
+    private int frameCounter = 0;
+
     // Update is called once per frame
     void Update()
     {
+        frameCounter++;
         Keyboard keyboard = remoteInputController.GetCurrentKeyboard();
         if(keyboard != null)
         {
@@ -24,8 +27,9 @@ public class UserInterfaceController : MonoBehaviour
         }
 
         string timeText     = System.DateTime.Now.ToString() + ":" + System.DateTime.Now.Millisecond.ToString() + "\n";
-        string keyText      = lastKey.ToString();
-        displayText.text    = timeText + keyText;
+        string keyText      = lastKey.ToString() + "\n";
+        string frameText    = frameCounter.ToString();
+        displayText.text    = timeText + keyText + frameText;
         switch (lastKey){
             case 'w':
                 displayText.color = Color.green;
@@ -40,7 +44,7 @@ public class UserInterfaceController : MonoBehaviour
                 displayText.color = Color.blue;
                 break;
             default:
-                displayText.color = Color.white;
+                displayText.color = Color.black;
                 break;
         }
     }
