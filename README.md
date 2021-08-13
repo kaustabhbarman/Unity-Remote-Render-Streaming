@@ -22,17 +22,17 @@ Inside the Unity editor open the _Project View_.
 
 Navigate to _Assets_ -> _Scenes_ and open the _Prototype_ scene.
 
-##HTTPS
+## HTTPS
 If you plan to use the gyroscope and https, you don't have to change anything.
 
-##HTTP
+## HTTP
 If you want to use http instead of https, you have to configure the project as follows.
 Change the _Signaling URL_ of the _Render Streaming_ script of the _RenderStreaming_ game
 object to _http://localhost:8080_
 
 ## Setting Up the Web Server
 
-###HTTPS
+### HTTPS
 The default configuration is for https. You don't have to change anything on the web server for https to work.
 
 Open a terminal or console window inside the _WebApp_ folder. Run the following commands in this particular order:
@@ -41,7 +41,7 @@ Open a terminal or console window inside the _WebApp_ folder. Run the following 
 
 `npm run build`
 
-###HTTP
+### HTTP
 **NOTE: The gyroscope does not work without HTTPS**
 
 Navigate to the _WebApp_ folder inside the _awt-unity_ folder. Open the _package.json_ file.
@@ -64,7 +64,7 @@ select a folder, where you want to save your application.
 
 ## Starting the Web Server and the Application
 
-###Web server
+### Web server
 Start the web server by executing the following command inside the _WebApp_ folder:
 
 `npm run start`
@@ -72,7 +72,7 @@ Start the web server by executing the following command inside the _WebApp_ fold
 To verify the web server is running, open the URL _localhost:8080_ in a browser. Add _https://_ in front of the URL
 in case you are using **HTTPS**.
 
-###Application
+### Application
 You can change the streamed resoultion by editing the _Streaming Size_ of the _Adjustable Camera Streamer_ script
 on the _PlayerCamera_ game object. To start the application from inside the editor,
 click the play button inside the Unity editor.
@@ -89,7 +89,7 @@ To change the resolution when starting the application in batchmode you can use 
 `.\Prototype.exe -batchmode -streamingWidth=YOUR_WIDTH -streamingHeight=YOUR_HEIGHT`
 
 The default width is 1280 and the default height is 720.
-##Using the Application
+## Using the Application
 On the website at _localhost:8080_ click on _Open Video Player_.
 
 Click the play button of the video player on the next site.
@@ -124,7 +124,7 @@ certificate and private key.
 the _WebApp_ folder. Inside the _start_ script, replace _client-1.local.key_ and _client-1.local.crt_ with the paths
 to your key/certificate.
 
-##Known Issues
+## Known Issues
 When using the gyroscope, the camera spins rapidly around on a certain angles. This is due to the so called
 [gimbal lock](https://https://en.wikipedia.org/wiki/Gimbal_lock).
 
