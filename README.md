@@ -55,7 +55,7 @@ Open a terminal or console window inside the _WebApp_ folder. Run the following 
 
 `npm run build`
 
-##Setting up Batchmode (Windows only)
+## Setting up Batchmode (Windows only)
 To run the application without the Unity editor and any visible game window, you have to build the application
 using the Unity standalone player.
 
