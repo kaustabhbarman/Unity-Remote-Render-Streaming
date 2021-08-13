@@ -7,6 +7,7 @@ public class CameraActivator : MonoBehaviour
     void Awake()
     {
         activeCamera.enabled = true;
+        activeCamera.gameObject.SetActive(true);
     }
 
     void LateUpdate()

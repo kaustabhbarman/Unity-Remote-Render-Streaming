@@ -145,17 +145,14 @@ public class CustomCameraControler : MonoBehaviour
 
         if (IsMouseDragged(mouse, false) || (gamepad?.rightStick != null && gamepad.rightStick.ReadValue() != Vector2.zero))
         {
-            Debug.Log("Mouse or Gamepad not null");
             // Rotation
             if (IsMouseDragged(mouse, false))
             {
-                Debug.Log("Mouse dragged");
                 UpdateTargetCameraStateFromInput(mouse.delta.ReadValue());
             }
             // Rotation from joystick
             if (gamepad?.rightStick != null)
             {
-                Debug.Log("Right stick not null; value: " + gamepad.rightStick.ReadValue());
                 UpdateTargetCameraStateFromInput(gamepad.rightStick.ReadValue());
             }
             // Translation
