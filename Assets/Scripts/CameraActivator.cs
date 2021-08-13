@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraActivator : MonoBehaviour
@@ -15,7 +13,6 @@ public class CameraActivator : MonoBehaviour
     {
         activeCamera.Render();
         RenderTexture.active = activeCamera.targetTexture;
-        //renderCamera();
     }
 
     public void renderCamera()

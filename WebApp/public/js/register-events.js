@@ -433,8 +433,8 @@ export function registerGyroEvents(videoPlayer) {
   if (window.DeviceOrientationEvent) {
     window.addEventListener('deviceorientation', function (e) {
       const alpha = e.alpha;
-      const beta = e.beta;
-      const gamma = e.gamma;
+      const beta = - e.beta + 90;
+      const gamma = - e.gamma;
       console.log("Device orientation: alpha:" + alpha + " , beta: " + beta + " , gamma: " + gamma)
       Logger.log("Device orientation: alpha:" + alpha + " , beta: " + beta + " , gamma: " + gamma);
       let data = new DataView(new ArrayBuffer(25));

@@ -7,10 +7,8 @@ using Unity.RenderStreaming;
 [Serializable]
 public class CustomInputReceiver : InputChannelReceiverBase
 {
-    //TESTING START
-    [SerializeField]
-    private Camera playerCamera;
-    //TESTING END
+    [SerializeField] private Camera playerCamera;
+
     [SerializeField, Tooltip("Array to set your own click event")]
     private ButtonClickElement[] arrayButtonClickEvent;
 
@@ -43,7 +41,7 @@ public class CustomInputReceiver : InputChannelReceiverBase
         {
             Debug.Log("CHANNEL NOT NULL SETCHANNEL: " + connectionId);
 
-            if(mainConnectionID.Equals(String.Empty))
+            if (mainConnectionID.Equals(String.Empty))
             {
                 Debug.Log("CHANGING MAIN ID");
                 mainConnectionID = connectionId;
@@ -81,10 +79,7 @@ public class CustomInputReceiver : InputChannelReceiverBase
         remoteInput?.Dispose();
     }
 
-/*
-    TODO: REMOVE
-*/
-    private void Update() 
+    private void Update()
     {
         if (remoteInput != null && playerCamera != null)
         {

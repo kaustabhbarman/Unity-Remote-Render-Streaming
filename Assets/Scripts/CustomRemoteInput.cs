@@ -1,7 +1,6 @@
 using System;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.LowLevel;
-using UnityEngine.InputSystem.EnhancedTouch;
 using UE = UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +9,6 @@ using UnityEngine;
 using Gyroscope = UnityEngine.InputSystem.Gyroscope;
 using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 using TouchPhase = UnityEngine.InputSystem.TouchPhase;
-using Vector3Control = UnityEngine.InputSystem.Controls.Vector3Control;
 using Unity.RenderStreaming;
 
 enum KeyboardEventType
@@ -127,9 +125,6 @@ public class CustomRemoteInput : IInput, IDisposable
     public Touchscreen RemoteTouchscreen { get; }
     public Gamepad RemoteGamepad { get; }
     public Gyroscope RemoteGyroscope { get; }
-    /*
-        TODO: REMOVE
-    */
     public Quaternion camRotation;
 
     public Action<int> ActionButtonClick;
@@ -163,8 +158,6 @@ public class CustomRemoteInput : IInput, IDisposable
         this.disposed = true;
         GC.SuppressFinalize(this);
     }
-
-    //---------------------------------------------------------------------------------------------------------------------
 
     public void ProcessInput(byte[] bytes)
     {
@@ -263,14 +256,7 @@ public class CustomRemoteInput : IInput, IDisposable
                 var beta = BitConverter.ToDouble(bytes, 9);
                 var gamma = BitConverter.ToDouble(bytes, 17);
 
-                float correctedAlpha = (float)alpha;
-                float correctedBeta = (float) - beta + 90;
-                float correctedGamma = - (float)gamma;
-
-                correctedAlpha = 0;
-                camRotation = Quaternion.Euler((float)correctedBeta, (float)correctedGamma, (float)correctedAlpha);
-
-                Debug.Log("Device orientation: alpha:" + alpha + " , beta: " + beta + " , gamma: " + gamma);
+                camRotation = Quaternion.Euler((float)beta, (float)gamma, 0F);
                 break;
         }
     }
@@ -417,10 +403,6 @@ public class CustomRemoteInput : IInput, IDisposable
     {
         ActionButtonClick?.Invoke(elementId);
     }
-
-/*
-    TODO: REMOVE
-*/
     public Quaternion GetCamRotation()
     {
         return camRotation;

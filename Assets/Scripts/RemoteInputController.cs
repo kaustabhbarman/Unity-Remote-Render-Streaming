@@ -16,7 +16,7 @@ public class RemoteInputController : MonoBehaviour
     private Mouse remote_mouse;
     private Gamepad remote_gamepad;
 
-    void Awake() 
+    void Awake()
     {
         if (receiver == null)
         {
@@ -25,7 +25,7 @@ public class RemoteInputController : MonoBehaviour
 
         receiver.onDeviceChange += OnDeviceChange;
 
-        if (enhancedTouchSupport) 
+        if (enhancedTouchSupport)
         {
             EnhancedTouchSupport.Enable();
         }
@@ -34,34 +34,35 @@ public class RemoteInputController : MonoBehaviour
     void OnDeviceChange(InputDevice device, InputDeviceChange change)
     {
         switch (change)
-            {
-                case InputDeviceChange.Added:
-                    SetDevice(device);
-                    return;
-                case InputDeviceChange.Removed:
-                    SetDevice(device, false);
-                    return;
-            }
+        {
+            case InputDeviceChange.Added:
+                SetDevice(device);
+                return;
+            case InputDeviceChange.Removed:
+                SetDevice(device, false);
+                return;
+        }
 
     }
 
-    void SetDevice(InputDevice device, bool add=true)
+    void SetDevice(InputDevice device, bool add = true)
     {
-        switch (device){
+        switch (device)
+        {
             case Keyboard keyboard:
-                    remote_keyboard = add ? keyboard : null;
+                remote_keyboard = add ? keyboard : null;
                 return;
             case Touchscreen screen:
-                    remote_touchscreen = add ? screen : null;
+                remote_touchscreen = add ? screen : null;
                 return;
             case Gyroscope gyro:
-                    remote_gyroscope = add ? gyro : null;
+                remote_gyroscope = add ? gyro : null;
                 return;
             case Mouse mouse:
-                    remote_mouse = add ? mouse : null;
+                remote_mouse = add ? mouse : null;
                 return;
             case Gamepad gamepad:
-                    remote_gamepad = add ? gamepad : null;
+                remote_gamepad = add ? gamepad : null;
                 return;
         }
     }

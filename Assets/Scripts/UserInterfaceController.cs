@@ -16,21 +16,21 @@ public class UserInterfaceController : MonoBehaviour
 
     private int frameCounter = 0;
 
-    // Update is called once per frame
     void Update()
     {
         frameCounter++;
         Keyboard keyboard = remoteInputController.GetCurrentKeyboard();
-        if(keyboard != null)
+        if (keyboard != null)
         {
             keyboard.onTextInput += OnTextInput;
         }
 
-        string timeText     = System.DateTime.Now.ToString() + ":" + System.DateTime.Now.Millisecond.ToString() + "\n";
-        string keyText      = lastKey.ToString() + "\n";
-        string frameText    = frameCounter.ToString();
-        displayText.text    = timeText + keyText + frameText;
-        switch (lastKey){
+        string timeText = System.DateTime.Now.ToString() + ":" + System.DateTime.Now.Millisecond.ToString() + "\n";
+        string keyText = lastKey.ToString() + "\n";
+        string frameText = frameCounter.ToString();
+        displayText.text = timeText + keyText + frameText;
+        switch (lastKey)
+        {
             case 'w':
                 displayText.color = Color.green;
                 break;
@@ -53,5 +53,4 @@ public class UserInterfaceController : MonoBehaviour
     {
         lastKey = c;
     }
-
 }

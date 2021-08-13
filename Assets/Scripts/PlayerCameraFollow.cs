@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerCameraFollow : MonoBehaviour
@@ -13,17 +11,8 @@ public class PlayerCameraFollow : MonoBehaviour
     [SerializeField]
     private Vector3 rotationOffset = new Vector3(20, 0, 0);
 
-    //[SerializeField]
-    //private CameraActivator cameraActivator;
-
     void LateUpdate()
     {
         transform.position = player.position + positionOffset;
-
-        //Quaternion curRotation = transform.rotation;
-        //curRotation.eulerAngles = rotationOffset;
-        //transform.rotation = curRotation;
-
-        //cameraActivator.renderCamera();
     }
 }

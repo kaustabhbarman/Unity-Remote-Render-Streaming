@@ -1,8 +1,5 @@
-using System.Collections.Generic;
-using Unity.RenderStreaming;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.EnhancedTouch;
 
 public class CustomCameraControler : MonoBehaviour
 {
@@ -51,7 +48,7 @@ public class CustomCameraControler : MonoBehaviour
             t.position = new Vector3(x, y, z);
         }
     }
-    
+
     #region Controlls
     [Header("Movement Settings")]
     [Tooltip("Movement Sensitivity Factor."), Range(0.001f, 1f)]
@@ -124,8 +121,6 @@ public class CustomCameraControler : MonoBehaviour
         m_TargetCameraState.pitch += input.y * mouseSensitivityFactor;
     }
 
-    //---------------------------------------------------------------------------------------------------------------------
-
     Vector3 GetInputTranslationDirection()
     {
         Vector3 direction = new Vector3();
@@ -147,36 +142,46 @@ public class CustomCameraControler : MonoBehaviour
     {
         mouse = remoteInputController.GetCurrentMouse();
         Gamepad gamepad = remoteInputController.GetCurrentGamepad();
-        
-        // Rotation
-        if (IsMouseDragged(mouse, false))
+
+        if (IsMouseDragged(mouse, false) || (gamepad?.rightStick != null && gamepad.rightStick.ReadValue() != Vector2.zero))
         {
-            UpdateTargetCameraStateFromInput(mouse.delta.ReadValue());
+            Debug.Log("Mouse or Gamepad not null");
+            // Rotation
+            if (IsMouseDragged(mouse, false))
+            {
+                Debug.Log("Mouse dragged");
+                UpdateTargetCameraStateFromInput(mouse.delta.ReadValue());
+            }
+            // Rotation from joystick
+            if (gamepad?.rightStick != null)
+            {
+                Debug.Log("Right stick not null; value: " + gamepad.rightStick.ReadValue());
+                UpdateTargetCameraStateFromInput(gamepad.rightStick.ReadValue());
+            }
+            // Translation
+
+            var translation = GetInputTranslationDirection() * Time.deltaTime;
+
+            translation *= Mathf.Pow(2.0f, boost);
+
+            m_TargetCameraState.Translate(translation);
+
+            // Framerate-independent interpolation
+            // Calculate the lerp amount, such that we get 99% of the way to our target in the specified time
+            var positionLerpPct = 1f - Mathf.Exp((Mathf.Log(1f - 0.99f) / positionLerpTime) * Time.deltaTime);
+            var rotationLerpPct = 1f - Mathf.Exp((Mathf.Log(1f - 0.99f) / rotationLerpTime) * Time.deltaTime);
+            m_InterpolatingCameraState.LerpTowards(m_TargetCameraState, positionLerpPct, rotationLerpPct);
+
+            m_InterpolatingCameraState.UpdateTransform(transform);
         }
-        // Rotation from joystick
-        if (gamepad?.rightStick != null)
+        else
         {
-            UpdateTargetCameraStateFromInput(gamepad.rightStick.ReadValue());
+            m_TargetCameraState.SetFromTransform(transform);
+            m_InterpolatingCameraState.SetFromTransform(transform);
         }
-        // Translation
-        
-        var translation = GetInputTranslationDirection() * Time.deltaTime;
-
-        translation *= Mathf.Pow(2.0f, boost);
-
-        m_TargetCameraState.Translate(translation);
-
-        // Framerate-independent interpolation
-        // Calculate the lerp amount, such that we get 99% of the way to our target in the specified time
-        var positionLerpPct = 1f - Mathf.Exp((Mathf.Log(1f - 0.99f) / positionLerpTime) * Time.deltaTime);
-        var rotationLerpPct = 1f - Mathf.Exp((Mathf.Log(1f - 0.99f) / rotationLerpTime) * Time.deltaTime);
-        m_InterpolatingCameraState.LerpTowards(m_TargetCameraState, positionLerpPct, rotationLerpPct);
-
-        m_InterpolatingCameraState.UpdateTransform(transform);
         transform.position = player.position + positionOffset;
     }
 
-    //---------------------------------------------------------------------------------------------------------------------
     static bool IsMouseDragged(Mouse m, bool useLeftButton)
     {
         if (null == m)
